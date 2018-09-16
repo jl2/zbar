@@ -17,7 +17,6 @@
 
 (in-package :zbar)
 
-
 (cffi:defcenum :zbar-symbol-type-t
     (:zbar-none              0)
     (:zbar-partial           1)

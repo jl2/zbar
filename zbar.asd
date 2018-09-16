@@ -25,6 +25,7 @@
   :components ((:file "package")
                (:file "zbar")
                (:file "image")
+               (:file "image-scanner")
                (:file "symbol")
                (:file "library"))
   :in-order-to ((test-op (test-op zbar.test))))

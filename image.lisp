@@ -90,7 +90,3 @@
   (filename :string))
 
 
-(define-cfun ("zbar_scan_image" scan-image) :int
-  (scanner :pointer)
-  (image :pointer))
-

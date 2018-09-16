@@ -46,8 +46,15 @@
    #:image-free-data
    #:image-write
    #:image-read
-   
 
+   #:image-scanner-create
+   #:image-scanner-destroy
+   #:image-scanner-set-data-handler
+   #:image-scanner-set-config
+   #:image-scanner-parse-config
+   #:image-scanner-enable-cache
+   #:image-scanner-recycle-image
+   #:image-scanner-get-results
    #:scan-image
 
    #:zbar-none
