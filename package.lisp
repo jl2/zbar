@@ -20,6 +20,10 @@
   (:export
 
    #:version
+
+   #:get-symbol-name
+   #:get-addon-name
+
    #:image-create
    #:image-destroy
    #:image-set-format
@@ -47,15 +51,19 @@
    #:zbar-addon
 
    #:image-first-symbol
-   #:symbol-next
+
+   ;; Symbol interface
    #:symbol-get-type
+   #:symbol-get-data
+   #:symbol-get-data-length
    #:symbol-get-quality
    #:symbol-get-loc-size
    #:symbol-get-loc-x
    #:symbol-get-loc-y
+   #:symbol-next
    #:symbol-get-components
    #:symbol-get-first-component
-   #:get-symbol-name
-   #:get-addon-name
-   #:get-data-length
-   #:symbol-next))
+
+   #:symbol-set-get-size
+   #:symbol-set-first-symbol
+   ))

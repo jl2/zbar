@@ -37,6 +37,15 @@
     (:zbar-addon5       #x0500)
     (:zbar-addon        #x0700e))
 
+;; Symbol Names
+(define-cfun ("zbar_get_symbol_name" get-symbol-name) :string
+  (symbol :zbar-symbol-type-t))
+
+(define-cfun ("zbar_get_addon_name" get-addon-name) :string
+  (symbol :zbar-symbol-type-t))
+
+
+;; Iteration
 (define-cfun ("zbar_image_first_symbol" image-first-symbol) :pointer
   (image :pointer))
 
@@ -44,15 +53,40 @@
   (symbol :pointer))
 
 
+;; Query
 (define-cfun ("zbar_symbol_get_type" symbol-get-type) :zbar-symbol-type-t
   (symbol :pointer))
 
 (define-cfun ("zbar_symbol_get_data" symbol-get-data) :string
   (symbol :pointer))
 
+(define-cfun ("zbar_symbol_get_data_length" symbol-get-data-length) :unsigned-int
+  (symbol :pointer))
 
-(define-cfun ("zbar_get_symbol_name" get-symbol-name) :string
-  (symbol :zbar-symbol-type-t))
+(define-cfun ("zbar_symbol_get_quality" symbol-get-quality) :int
+  (symbol :pointer))
 
-(define-cfun ("zbar_get_addon_name" get-addon-name) :string
-  (symbol :zbar-symbol-type-t))
+(define-cfun ("zbar_symbol_get_loc_size" symbol-get-loc-size) :unsigned-int
+  (symbol :pointer))
+
+(define-cfun ("zbar_symbol_get_loc_x" symbol-get-loc-x) :unsigned-int
+  (symbol :pointer)
+  (index :unsigned-int))
+
+(define-cfun ("zbar_symbol_get_loc_y" symbol-get-loc-y) :unsigned-int
+  (symbol :pointer)
+  (index :unsigned-int))
+
+(define-cfun ("zbar_symbol_get_components" symbol-get-components) :pointer
+  (symbol :pointer))
+
+(define-cfun ("zbar_symbol_first_component" symbol-first-component) :pointer
+  (symbol :pointer))
+
+
+
+(define-cfun ("zbar_symbol_set_get_size" symbol-set-get-size) :int
+  (symbols :pointer))
+
+(define-cfun ("zbar_symbol_set_first_symbol" symbol-set-first-symbol) :pointer
+  (symbols :pointer))
