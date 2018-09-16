@@ -26,10 +26,28 @@
 
    #:image-create
    #:image-destroy
-   #:image-set-format
+   #:image-convert
+   #:image-convert-resize
+
    #:image-get-format
-   #:image-set-size
+   #:image-get-sequence
+   #:image-get-width
+   #:image-get_height
+   #:image-get-data
+   #:image-get-data-length
+   #:image-get-symbols
+   #:image-set-symbols
+   #:image-first-symbol
+
+   #:image-set-format
+   #:image-set-sequence
+   #:image-get-size
    #:image-set-data
+   #:image-free-data
+   #:image-write
+   #:image-read
+   
+
    #:scan-image
 
    #:zbar-none
@@ -49,8 +67,6 @@
    #:zbar-addon2
    #:zbar-addon5
    #:zbar-addon
-
-   #:image-first-symbol
 
    ;; Symbol interface
    #:symbol-get-type

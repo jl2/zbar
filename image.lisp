@@ -22,13 +22,51 @@
 (define-cfun ("zbar_image_destroy" image-destroy) :void
   (image :pointer))
 
-(define-cfun ("zbar_image_set_format" image-set-format) :void
+(define-cfun ("zbar_image_convert" image-convert) :pointer
   (image :pointer)
   (format :unsigned-long))
+
+(define-cfun ("zbar_image_convert_resize" image-convert-resize) :pointer
+  (image :pointer)
+  (format :unsigned-long)
+  (width :unsigned-int)
+  (height :unsigned-int))
 
 (define-cfun ("zbar_image_get_format" image-get-format) :unsigned-long
   (image :pointer))
 
+(define-cfun ("zbar_image_get_sequence" image-get-sequence) :unsigned-int
+  (image :pointer))
+
+(define-cfun ("zbar_image_get_width" image-get-width) :unsigned-int
+  (image :pointer))
+
+(define-cfun ("zbar_image_get_height" image-get-height) :unsigned-int
+  (image :pointer))
+
+(define-cfun ("zbar_image_get_data" image-get-data) :pointer
+  (image :pointer))
+
+(define-cfun ("zbar_image_get_data_length" image-get-data-length) :unsigned-long
+  (image :pointer))
+
+(define-cfun ("zbar_image_get_symbols" image-get-symbols) :pointer
+  (image :pointer))
+
+(define-cfun ("zbar_image_set_symbols" image-set-symbols) :pointer
+  (image :pointer)
+  (symbols :pointer))
+
+(define-cfun ("zbar_image_first_symbol" image-first-symbol) :pointer
+  (image :pointer))
+
+(define-cfun ("zbar_image_set_format" image-set-format) :void
+  (image :pointer)
+  (format :unsigned-long))
+
+(define-cfun ("zbar_image_set_sequence" image-set-sequence) :void
+  (image :pointer)
+  (sequence-num :unsigned-long))
 
 (define-cfun ("zbar_image_set_size" image-set-size) :void
   (image :pointer)
@@ -39,7 +77,18 @@
   (image :pointer)
   (data :pointer)
   (data-byte-length :unsigned-long)
-  (cleanup-handler :pointer))
+  (cleanup-handler :pointer (cffi:null-pointer)))
+
+(define-cfun ("zbar_image_free_data" image-free-data) :void
+  (image :pointer))
+
+(define-cfun ("zbar_image_write" image-write) :int
+  (image :pointer)
+  (filebase :string))
+
+(define-cfun ("zbar_image_read" image-read) :pointer
+  (filename :string))
+
 
 (define-cfun ("zbar_scan_image" scan-image) :int
   (scanner :pointer)
