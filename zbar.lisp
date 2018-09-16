@@ -48,9 +48,45 @@
 (defun hello ()
   (error "Not implemented"))
 
+(define-cfun ("zbar_version" zbar-version) :int
+  (major :pointer)
+  (minor :pointer))
 
+(defun version ()
+  (with-foreign-objects ((major :unsigned-int 1)
+                         (minor :unsigned-int 1))
+    (let ((rval (zbar-version major minor)))
+      (values rval (cffi:mem-ref major :unsigned-int) (cffi:mem-ref minor :unsigned-int)))))
 
+(define-cfun ("zbar_set_verbosity" set-verbosity) :void
+  (verbosity :int))
 
+(cffi:defcenum  :zbar-error-t
+    :zbar-ok
+    :zbar-err-nomem
+    :zbar-err-internal
+    :zbar-err-unsupported
+    :zbar-err-invalid
+    :zbar-err-system
+    :zbar-err-locking
+    :zbar-err-busy
+    :zbar-err-xdisplay
+    :zbar-err-xproto
+    :zbar-err-closed
+    :zbar-err-winapi
+    :zbar-err-num)
 
+(cffi:defcenum :zbar-config
+    (:zbar-cfg-enable 0)
+    :zbar-cfg-add-check
+    :zbar-cfg-emit-check
+    :zbar-cfg-ascii
+    :zbar-cfg-num
 
+    (:zbar-cfg-min-len #x20)
+    :zbar-cfg-max-len
 
+    (:zbar-cfg-position #x80)
+
+    (:zbar-cfg-x-density #x100)
+    :zbar-cfg-y-density)

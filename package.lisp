@@ -17,34 +17,45 @@
 
 (defpackage :zbar
   (:use #:cl #:cffi #:j-utils #:alexandria)
-  (:export #:image-create
-           #:image-destroy
-           #:image-set-format
-           #:image-get-format
-           #:image-set-size
-           #:image-set-data
-           #:scan-image
+  (:export
 
-           #:zbar-none
-           #:zbar-partial
-           #:zbar-ean8
-           #:zbar-upce
-           #:zbar-isbn10
-           #:zbar-upca
-           #:zbar-ean13
-           #:zbar-isbn13
-           #:zbar-i25
-           #:zbar-code39
-           #:zbar-pdf417
-           #:zbar-qrcode
-           #:zbar-code128
-           #:zbar-symbol
-           #:zbar-addon2
-           #:zbar-addon5
-           #:zbar-addon
+   #:version
+   #:image-create
+   #:image-destroy
+   #:image-set-format
+   #:image-get-format
+   #:image-set-size
+   #:image-set-data
+   #:scan-image
 
-           #:image-first-symbol
-           #:symbol-next
-           #:symbol-get-type
-           #:get-symbol-name
-           #:symbol-next))
+   #:zbar-none
+   #:zbar-partial
+   #:zbar-ean8
+   #:zbar-upce
+   #:zbar-isbn10
+   #:zbar-upca
+   #:zbar-ean13
+   #:zbar-isbn13
+   #:zbar-i25
+   #:zbar-code39
+   #:zbar-pdf417
+   #:zbar-qrcode
+   #:zbar-code128
+   #:zbar-symbol
+   #:zbar-addon2
+   #:zbar-addon5
+   #:zbar-addon
+
+   #:image-first-symbol
+   #:symbol-next
+   #:symbol-get-type
+   #:symbol-get-quality
+   #:symbol-get-loc-size
+   #:symbol-get-loc-x
+   #:symbol-get-loc-y
+   #:symbol-get-components
+   #:symbol-get-first-component
+   #:get-symbol-name
+   #:get-addon-name
+   #:get-data-length
+   #:symbol-next))

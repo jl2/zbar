@@ -47,12 +47,12 @@
 (define-cfun ("zbar_symbol_get_type" symbol-get-type) :zbar-symbol-type-t
   (symbol :pointer))
 
-(define-cfun ("zbar_symbol_get_data" symbol-get-type) :string
+(define-cfun ("zbar_symbol_get_data" symbol-get-data) :string
   (symbol :pointer))
 
 
 (define-cfun ("zbar_get_symbol_name" get-symbol-name) :string
-  (symbol :pointer))
+  (symbol :zbar-symbol-type-t))
 
-(define-cfun ("zbar_symbol_next" symbol-next) :pointer
-  (symbol :pointer))
+(define-cfun ("zbar_get_addon_name" get-addon-name) :string
+  (symbol :zbar-symbol-type-t))
