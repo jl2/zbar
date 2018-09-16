@@ -23,9 +23,10 @@
   :serial t
   :depends-on (#:cffi #:common-cv #:alexandria #:j-utils #:trivial-main-thread)
   :components ((:file "package")
+               (:file "library")
                (:file "zbar")
+               (:file "symbol")
                (:file "image")
                (:file "image-scanner")
-               (:file "symbol")
-               (:file "library"))
+               (:file "utils"))
   :in-order-to ((test-op (test-op zbar.test))))

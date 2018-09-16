@@ -22,18 +22,27 @@
 (define-cfun ("zbar_image_destroy" image-destroy) :void
   (image :pointer))
 
-(define-cfun ("zbar_image_convert" image-convert) :pointer
+(define-cfun ("zbar_image_convert" z-image-convert) :pointer
   (image :pointer)
   (format :unsigned-long))
 
-(define-cfun ("zbar_image_convert_resize" image-convert-resize) :pointer
+(defun image-convert (image format)
+  (z-image-convert image (from-four-cc format)))
+
+(define-cfun ("zbar_image_convert_resize" z-image-convert-resize) :pointer
   (image :pointer)
   (format :unsigned-long)
   (width :unsigned-int)
   (height :unsigned-int))
 
-(define-cfun ("zbar_image_get_format" image-get-format) :unsigned-long
+(defun image-convert-resize (image format width height)
+  (z-image-convert-resize image (from-four-cc format) width height))
+
+(define-cfun ("zbar_image_get_format" z-image-get-format) :unsigned-long
   (image :pointer))
+
+(defun image-get-format (image)
+  (to-four-cc (z-image-get-format image)))
 
 (define-cfun ("zbar_image_get_sequence" image-get-sequence) :unsigned-int
   (image :pointer))
@@ -57,12 +66,12 @@
   (image :pointer)
   (symbols :pointer))
 
-(define-cfun ("zbar_image_first_symbol" image-first-symbol) :pointer
-  (image :pointer))
-
-(define-cfun ("zbar_image_set_format" image-set-format) :void
+(define-cfun ("zbar_image_set_format" z-image-set-format) :void
   (image :pointer)
   (format :unsigned-long))
+
+(defun image-set-format (image format)
+  (z-image-set-format image (from-four-cc format)))
 
 (define-cfun ("zbar_image_set_sequence" image-set-sequence) :void
   (image :pointer)
@@ -73,14 +82,19 @@
   (width :unsigned-int) 
  (height :unsigned-int))
 
+(define-cfun ("zbar_image_free_data" z-image-free-data) :void
+  (image :pointer))
+
+(defcallback image-free-data :void
+    ((image :pointer))
+  (z-image-free-data image))
+
 (define-cfun ("zbar_image_set_data" image-set-data) :void
   (image :pointer)
   (data :pointer)
   (data-byte-length :unsigned-long)
-  (cleanup-handler :pointer (cffi:null-pointer)))
+  (cleanup-handler :pointer (cffi:get-callback 'image-free-data)))
 
-(define-cfun ("zbar_image_free_data" image-free-data) :void
-  (image :pointer))
 
 (define-cfun ("zbar_image_write" image-write) :int
   (image :pointer)

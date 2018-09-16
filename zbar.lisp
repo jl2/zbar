@@ -45,22 +45,6 @@
 	,return-type))
      (export ',name)))
 
-(defun hello ()
-  (error "Not implemented"))
-
-(define-cfun ("zbar_version" zbar-version) :int
-  (major :pointer)
-  (minor :pointer))
-
-(defun version ()
-  (with-foreign-objects ((major :unsigned-int 1)
-                         (minor :unsigned-int 1))
-    (let ((rval (zbar-version major minor)))
-      (values rval (cffi:mem-ref major :unsigned-int) (cffi:mem-ref minor :unsigned-int)))))
-
-(define-cfun ("zbar_set_verbosity" set-verbosity) :void
-  (verbosity :int))
-
 (cffi:defcenum  :zbar-error-t
     :zbar-ok
     :zbar-err-nomem
@@ -76,7 +60,7 @@
     :zbar-err-winapi
     :zbar-err-num)
 
-(cffi:defcenum :zbar-config
+(cffi:defcenum :zbar-config-t
     (:zbar-cfg-enable 0)
     :zbar-cfg-add-check
     :zbar-cfg-emit-check
@@ -90,3 +74,43 @@
 
     (:zbar-cfg-x-density #x100)
     :zbar-cfg-y-density)
+
+(define-cfun ("zbar_version" zbar-version) :int
+  (major :pointer)
+  (minor :pointer))
+
+(defun version ()
+  (with-foreign-objects ((major :unsigned-int 1)
+                         (minor :unsigned-int 1))
+    (let ((rval (zbar-version major minor)))
+      (values rval (cffi:mem-ref major :unsigned-int) (cffi:mem-ref minor :unsigned-int)))))
+
+(define-cfun ("zbar_set_verbosity" set-verbosity) :void
+  (verbosity :int))
+
+(define-cfun ("zbar_increase_verbosity" increase-verbosity) :void)
+
+(define-cfun ("_zbar_error_string" error-string) :string
+  (object :pointer)
+  (verbosity :int))
+
+(define-cfun ("_zbar_get_error_code" get-error-code) :zbar-error-t
+  (object :pointer))
+
+(defun from-four-cc (str)
+  (+
+   (ash (char-code (aref str 3)) (* 3 8))
+   (ash (char-code (aref str 2)) (* 2 8))
+   (ash (char-code (aref str 1)) (* 1 8))
+   (ash (char-code (aref str 0)) (* 0 8))))
+  
+(defun to-four-cc (number)
+  (let ((rval (make-string 4)))
+    (setf (aref rval 0) (code-char (logand #xff (ash number (* -0 8)))))
+    (setf (aref rval 1) (code-char (logand #xff (ash number (* -1 8)))))
+    (setf (aref rval 2) (code-char (logand #xff (ash number (* -2 8)))))
+    (setf (aref rval 3) (code-char (logand #xff (ash number (* -3 8)))))
+    rval))
+
+
+

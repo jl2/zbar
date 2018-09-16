@@ -20,10 +20,14 @@
   (:export
 
    #:version
-
+   #:set-verbosity
+   #:increase-verbosity
+   #:error-string
+   #:get-error-code
+   
    #:get-symbol-name
    #:get-addon-name
-
+   
    #:image-create
    #:image-destroy
    #:image-convert
@@ -32,7 +36,7 @@
    #:image-get-format
    #:image-get-sequence
    #:image-get-width
-   #:image-get_height
+   #:image-get-height
    #:image-get-data
    #:image-get-data-length
    #:image-get-symbols
@@ -57,6 +61,20 @@
    #:image-scanner-get-results
    #:scan-image
 
+   #:zbar-ok
+   #:zbar-err-nomem
+   #:zbar-err-internal
+   #:zbar-err-unsupported
+   #:zbar-err-invalid
+   #:zbar-err-system
+   #:zbar-err-locking
+   #:zbar-err-busy
+   #:zbar-err-xdisplay
+   #:zbar-err-xproto
+   #:zbar-err-closed
+   #:zbar-err-winapi
+   #:zbar-err-num
+   
    #:zbar-none
    #:zbar-partial
    #:zbar-ean8
@@ -85,8 +103,11 @@
    #:symbol-get-loc-y
    #:symbol-next
    #:symbol-get-components
-   #:symbol-get-first-component
+   #:symbol-first-component
 
    #:symbol-set-get-size
    #:symbol-set-first-symbol
+
+   #:simple-scan
+
    ))

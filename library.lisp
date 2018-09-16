@@ -1,5 +1,5 @@
-(cffi:define-foreign-library zbar
+(cffi:define-foreign-library zbar-lib
   (:darwin "libzbar.dylib")
   (:linux "libzbar.so"))
 
-(cffi:use-foreign-library zbar)
+(cffi:use-foreign-library zbar-lib)
