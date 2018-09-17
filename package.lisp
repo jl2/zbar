@@ -110,4 +110,5 @@
 
    #:simple-scan
 
+   #:scan-cv-image
    ))
