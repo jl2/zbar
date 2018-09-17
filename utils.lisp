@@ -44,7 +44,6 @@
          (rval nil))
 
     (image-scanner-set-config scanner 0 :zbar-cfg-enable 1)
-    ;;(format t "Error: ~a~%" (error-string scanner 10))
     (image-set-size image (cv:ipl-width-step filtered) (cv:ipl-height filtered))
     (image-set-data image (cv:ipl-data filtered) (* (cv:ipl-width-step filtered) (cv:ipl-height filtered)) (cffi:null-pointer))
     (image-set-format image "Y800")
