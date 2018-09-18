@@ -27,5 +27,11 @@
 (def-suite :zbar)
 (in-suite :zbar)
 
-(test hello
-  (is-true (hello)))
+(test four-cc-reverses
+  (is (string= "Y800" (zbar::to-four-cc (zbar::from-four-cc "Y800")))))
+
+(test from-four-cc
+  (is (= 808466521 (zbar::from-four-cc "Y800"))))
+
+(test to-four-cc
+  (is (string= (zbar::to-four-cc 1497453127) "GRAY")))
